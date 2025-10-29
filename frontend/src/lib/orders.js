@@ -3,6 +3,8 @@ import axios from "axios";
 
 export let orders;
 export let order_placed;
+const API_URL = import.meta.env.VITE_API_URL;
+
 
 const user = JSON.parse(localStorage.getItem("user"));
 
@@ -31,7 +33,7 @@ export async function add_order(
   };
 
   try {
-    await axios.post("http://localhost:5000/api/order/add", payload, config);
+    await axios.post(`${API_URL}/api/order/add`, payload, config);
     order_placed = order_placed_date;
   } catch (error) {
     console.error("Error adding order:", error);
@@ -51,7 +53,7 @@ export async function fetch_orders() {
   };
 
   try {
-    const response = await axios.get("http://localhost:5000/api/order", config);
+    const response = await axios.get(`${API_URL}/api/order`, config);
     orders = response.data;
     return orders;
   } catch (error) {

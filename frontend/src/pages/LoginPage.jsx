@@ -11,6 +11,8 @@ export default function LoginPage() {
     confirmPassword: "",
   });
 
+  const API_URL = import.meta.env.VITE_API_URL;
+
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -28,7 +30,7 @@ export default function LoginPage() {
 
     try {
       const { data } = await axios.post(
-        "http://localhost:5000/api/user/login",
+        `${API_URL}/api/user/login`,
         {
           email,
           password,
@@ -48,7 +50,7 @@ export default function LoginPage() {
     if (password !== confirmPassword) return alert("Passwords don’t match!");
 
     try {
-      const { data } = await axios.post("http://localhost:5000/api/user", {
+      const { data } = await axios.post(`${API_URL}/api/user`, {
         name,
         email,
         password,

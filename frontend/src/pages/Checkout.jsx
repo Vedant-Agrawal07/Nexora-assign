@@ -9,6 +9,8 @@ export default function Checkout() {
   const navigate = useNavigate();
   const [cart, setCart] = useState({ products: [] });
   const [loading, setLoading] = useState(true);
+  const API_URL = import.meta.env.VITE_API_URL;
+
 
   // fetch cart from backend (central source of truth)
   async function fetchCart() {
@@ -19,7 +21,7 @@ export default function Checkout() {
     }
 
     try {
-      const res = await axios.get("http://localhost:5000/api/cart", {
+      const res = await axios.get(`${API_URL}/api/cart`, {
         headers: { authorization: `Bearer ${user.token}` },
       });
       setCart(res.data || { products: [] });

@@ -4,6 +4,8 @@ import axios from "axios";
 let user = JSON.parse(localStorage.getItem("user"));
 let cart = { products: [] };
 let cart_quantity = 0;
+const API_URL = import.meta.env.VITE_API_URL;
+
 
 async function initCart() {
   await load_from_storage();
@@ -28,7 +30,7 @@ async function fetchCart() {
   const config = { headers: { authorization: `Bearer ${user.token}` } };
 
   try {
-    const response = await axios.get("http://localhost:5000/api/cart", config);
+    const response = await axios.get(`${API_URL}/api/cart`, config);
     cart = response.data;
   } catch (error) {
     console.error(
@@ -47,7 +49,7 @@ async function add_to_cart(product_id , quantity) {
  
 
   const response = await axios.post(
-    "http://localhost:5000/api/cart/add",
+    `${API_URL}/api/cart/add`,
     { productId: product_id, quantity },
     config
   );
@@ -62,7 +64,7 @@ async function remove_from_cart(productId) {
   const config = { headers: { authorization: `Bearer ${user.token}` } };
 
   const response = await axios.post(
-    "http://localhost:5000/api/cart/remove",
+    `${API_URL}/api/cart/remove`,
     { productId },
     config
   );
@@ -77,7 +79,7 @@ async function updateCartProduct(productId, quantity) {
   const config = { headers: { authorization: `Bearer ${user.token}` } };
 
   const response = await axios.put(
-    "http://localhost:5000/api/cart/update",
+    `${API_URL}/api/cart/update`,
     { productId, quantity },
     config
   );
@@ -92,7 +94,7 @@ async function update_delivery_option(product_id, delivery_option_id) {
   const config = { headers: { authorization: `Bearer ${user.token}` } };
 
   const response = await axios.put(
-    "http://localhost:5000/api/cart/updateOption",
+    `${API_URL}/api/cart/updateOption`,
     {
       productId: product_id,
       optionId: delivery_option_id,

@@ -9,6 +9,7 @@ export default function PickIt() {
   const [quantity , setQuantity] = useState(1);
   const [cartQty, setCartQty] = useState(cart_quantity);
   const navigate = useNavigate();
+const API_URL = import.meta.env.VITE_API_URL;
 
   useEffect(() => {
     const user_data = JSON.parse(localStorage.getItem("user"));
@@ -22,7 +23,7 @@ export default function PickIt() {
 
   async function fetchProducts() {
     try {
-      const res = await axios.get("http://localhost:5000/api/product");
+      const res = await axios.get(`${API_URL}/api/product`);
       setProducts(res.data);
     } catch (err) {
       console.error("Error fetching products:", err);
@@ -36,7 +37,7 @@ export default function PickIt() {
     }
     try {
       const res = await axios.get(
-        `http://localhost:5000/api/product/find?search=${search}`
+        `${API_URL}/api/product/find?search=${search}`
       );
       setProducts(res.data);
     } catch (err) {
