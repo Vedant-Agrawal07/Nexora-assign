@@ -82,7 +82,7 @@ export default function PickIt() {
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             onKeyDown={(e) => e.key === "Enter" && handleSearch()}
-            className="flex-grow bg-transparent outline-none text-[#F5F5F5]"
+            className="grow bg-transparent outline-none text-[#F5F5F5]"
           />
           <button
             onClick={handleSearch}
