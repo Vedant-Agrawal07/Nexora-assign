@@ -10,7 +10,13 @@ import cors from 'cors';
 
 const app = express();
 app.use(express.json());
-app.use(cors({ origin: "*", credentials: true }));dotenv.config();
+app.use(
+  cors({
+    origin: ["https://nexora-assign.vercel.app", "http://localhost:5173"],
+  })
+);
+
+dotenv.config();
 connectDb();
 
 app.get("/", (req, res) => {
