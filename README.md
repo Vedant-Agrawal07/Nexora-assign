@@ -136,10 +136,10 @@ You can add screenshots of your project here for a more visual README.
 *(Add a screenshot showing your product list page)*
 
 ```
-![Home Page](screenshots/home-page-scr-1.png)
+![Home Page](https://github.com/Vedant-Agrawal07/Nexora-assign/blob/86d07570805097570c03dcd664c7258f72a53459/screenshots/home-page-scr-1.png)
 ```
 ```
-![Home Page](./screenshots/home-page-scr-2.png)
+![Home Page](https://github.com/Vedant-Agrawal07/Nexora-assign/blob/86d07570805097570c03dcd664c7258f72a53459/screenshots/home-page-scr-2.png)
 ```
 
 ### 🛒 Checkout Page
@@ -147,7 +147,7 @@ You can add screenshots of your project here for a more visual README.
 *(Add a screenshot showing order summary & payment summary)*
 
 ```
-![Checkout Page](./screenshots/checkout-page-scr.png)
+![Checkout Page](https://github.com/Vedant-Agrawal07/Nexora-assign/blob/86d07570805097570c03dcd664c7258f72a53459/screenshots/checkout-page-scr.png)
 ```
 
 ### 📦 Orders Page
@@ -155,7 +155,7 @@ You can add screenshots of your project here for a more visual README.
 *(Add a screenshot of past orders)*
 
 ```
-![Orders Page](./screenshots/orders-page-scr.png)
+![Orders Page](https://github.com/Vedant-Agrawal07/Nexora-assign/blob/86d07570805097570c03dcd664c7258f72a53459/screenshots/orders-page-scr.png)
 ```
 
 
@@ -164,7 +164,7 @@ You can add screenshots of your project here for a more visual README.
 *(Add a screenshot of past orders)*
 
 ```
-![Orders Page](./screenshots/tracking-page-scr.png)
+![Orders Page](https://github.com/Vedant-Agrawal07/Nexora-assign/blob/86d07570805097570c03dcd664c7258f72a53459/screenshots/tracking-page-scr.png)
 ```
 
 ---
