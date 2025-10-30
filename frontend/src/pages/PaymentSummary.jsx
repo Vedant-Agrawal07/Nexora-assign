@@ -1,16 +1,9 @@
-// src/components/PaymentSummary.jsx
 import React, { useEffect, useState } from "react";
 import { getDeliveryOption } from "../lib/deliveryOptions";
 import dayjs from "dayjs";
 import { add_order } from "../lib/orders.js";
 import { useNavigate } from "react-router-dom";
 
-
-/**
- * props:
- *  - cart: cart object { products: [...] }
- *  - onCartChange() to refresh parent cart (after placing order)
- */
 export default function PaymentSummary({ cart, onCartChange }) {
   const [totals, setTotals] = useState({
     itemsCount: 0,
@@ -21,8 +14,7 @@ export default function PaymentSummary({ cart, onCartChange }) {
     total: 0,
   });
 
-    const navigate = useNavigate();
-
+  const navigate = useNavigate();
 
   useEffect(() => {
     calculateTotals();
@@ -68,12 +60,8 @@ export default function PaymentSummary({ cart, onCartChange }) {
 
     try {
       await add_order(cart, totals.total, deliveryDateArray, orderPlacedDate);
-      // optional: refresh / clear cart in parent
       if (typeof onCartChange === "function") await onCartChange();
-      // navigate to orders page (we can use link)
-      navigate("/orders"
-
-      );
+      navigate("/orders");
     } catch (err) {
       console.error("Failed to place order:", err);
       alert("Failed to place order. Try again.");
@@ -81,45 +69,62 @@ export default function PaymentSummary({ cart, onCartChange }) {
   };
 
   return (
-    <div className="space-y-4">
-      <div className="text-xl font-semibold mb-2">Order Summary</div>
+    <div className="bg-gradient-to-b from-[#1A1A1A] to-[#111111] border border-gray-800 rounded-2xl shadow-lg p-6 space-y-6 sticky top-6 backdrop-blur-sm">
+      <h2 className="text-2xl font-semibold text-gray-100 border-b border-gray-800 pb-3">
+        Order Summary
+      </h2>
 
-      <div className="flex justify-between text-sm">
-        <div>Items ({totals.itemsCount}):</div>
-        <div>₹{totals.productPrice.toFixed(2)}</div>
+      {/* Summary Lines */}
+      <div className="space-y-2 text-sm text-gray-300">
+        <div className="flex justify-between">
+          <span>Items ({totals.itemsCount})</span>
+          <span>₹{totals.productPrice.toFixed(2)}</span>
+        </div>
+        <div className="flex justify-between">
+          <span>Shipping &amp; Handling</span>
+          <span>₹{totals.shipping.toFixed(2)}</span>
+        </div>
       </div>
 
-      <div className="flex justify-between text-sm">
-        <div>Shipping &amp; handling:</div>
-        <div>₹{totals.shipping.toFixed(2)}</div>
+      <div className="border-t border-gray-800 pt-4 space-y-2 text-sm text-gray-300">
+        <div className="flex justify-between">
+          <span>Total before tax</span>
+          <span>₹{totals.beforeTax.toFixed(2)}</span>
+        </div>
+        <div className="flex justify-between text-gray-400">
+          <span>Estimated Tax (10%)</span>
+          <span>₹{totals.tax.toFixed(2)}</span>
+        </div>
       </div>
 
-      <div className="flex justify-between text-sm font-medium mt-2">
-        <div>Total before tax:</div>
-        <div>₹{totals.beforeTax.toFixed(2)}</div>
+      {/* Final Total */}
+      <div className="border-t border-gray-700 pt-4 flex justify-between items-center bg-[#0F0F0F]/50 rounded-xl px-4 py-3">
+        <span className="text-lg font-semibold text-gray-100">Order Total</span>
+        <span className="text-xl font-bold text-[#F97316]">
+          ₹{totals.total.toFixed(2)}
+        </span>
       </div>
 
-      <div className="flex justify-between text-sm">
-        <div>Estimated tax (10%):</div>
-        <div>₹{totals.tax.toFixed(2)}</div>
-      </div>
-
-      <div className="flex justify-between text-lg font-bold mt-2">
-        <div>Order total:</div>
-        <div>₹{totals.total.toFixed(2)}</div>
-      </div>
-
+      {/* Place Order Button */}
       <button
         disabled={!cart || !cart.products || cart.products.length === 0}
         onClick={handlePlaceOrder}
-        className={`w-full mt-4 py-2 rounded-lg font-semibold text-black ${
+        className={`w-full py-3 mt-3 rounded-xl font-semibold text-white tracking-wide transition-all duration-300 shadow-md ${
           cart && cart.products && cart.products.length > 0
-            ? "bg-[#F97316] hover:bg-[#EA580C]"
+            ? "bg-gradient-to-r from-[#F97316] to-[#EA580C] hover:shadow-[0_0_15px_#F9731633] active:scale-95"
             : "bg-gray-700 opacity-60 cursor-not-allowed"
         }`}
       >
-        Place your order
+        Place Your Order
       </button>
+
+      <p className="text-xs text-gray-500 text-center leading-relaxed">
+        By placing your order, you agree to PickIt’s{" "}
+        <span className="text-[#F97316] hover:underline cursor-pointer">
+          Terms and Conditions
+        </span>
+        .
+      </p>
     </div>
   );
 }

@@ -11,7 +11,7 @@ export default function OrdersPage() {
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem("user"));
     if (!user) {
-      navigate("/login");
+      navigate("/");
       return;
     }
 
@@ -97,79 +97,111 @@ export default function OrdersPage() {
       </header>
 
       {/* Orders Section */}
-      <main className="px-6 py-8">
-        <h1 className="text-2xl font-bold mb-6">Your Orders</h1>
+      <main className="px-6 py-10">
+        <h1 className="text-3xl font-bold mb-8 text-[#F5F5F5]">Your Orders</h1>
 
         {orders.length === 0 ? (
-          <p className="text-gray-400">You have no orders yet.</p>
+          <div className="flex flex-col items-center justify-center py-20 text-gray-400">
+            <img
+              src="/images/icons/empty-box.png"
+              alt="No Orders"
+              className="h-20 opacity-60 mb-4"
+            />
+            <p className="text-lg">You haven’t placed any orders yet.</p>
+            <button
+              onClick={() => navigate("/")}
+              className="mt-5 bg-[#F97316] hover:bg-[#EA580C] text-black font-semibold px-6 py-2 rounded-full transition"
+            >
+              Start Shopping
+            </button>
+          </div>
         ) : (
-          <div className="grid gap-6">
+          <div className="grid gap-8">
             {orders.map((order) => (
               <div
                 key={order._id}
-                className="bg-[#1A1A1A] p-5 rounded-2xl shadow-md border border-gray-800"
+                className="bg-gradient-to-br from-[#1A1A1A] to-[#141414] p-6 rounded-2xl shadow-lg border border-gray-800 hover:shadow-[#F9731620] hover:border-[#F9731633] transition-all duration-300"
               >
                 {/* Order Header */}
-                <div className="flex justify-between items-start border-b border-gray-700 pb-3 mb-3">
+                <div className="flex justify-between items-start border-b border-gray-700 pb-4 mb-4">
                   <div>
                     <p className="text-sm text-gray-400">
                       Order Placed:{" "}
-                      <span className="text-[#F5F5F5]">{order.orderDate}</span>
+                      <span className="text-[#F5F5F5] font-medium">
+                        {order.orderDate}
+                      </span>
                     </p>
                     <p className="text-sm text-gray-400">
                       Total:{" "}
-                      <span className="text-[#F5F5F5]">
+                      <span className="text-[#F97316] font-semibold">
                         ₹{order.totalCost.toFixed(2)}
                       </span>
                     </p>
                   </div>
                   <div className="text-right">
-                    <p className="text-sm text-gray-400">Order ID:</p>
-                    <p className="font-medium text-[#F5F5F5]">{order._id}</p>
+                    <p className="text-xs text-gray-500 uppercase tracking-wide">
+                      Order ID
+                    </p>
+                    <p className="font-medium text-[#F5F5F5] text-sm">
+                      {order._id}
+                    </p>
                   </div>
                 </div>
 
                 {/* Products */}
-                <div className="grid gap-5">
+                <div className="space-y-6">
                   {order.products.map((product, idx) => (
                     <div
                       key={idx}
-                      className="grid grid-cols-[100px_1fr_auto] gap-5 items-center border-b border-gray-700 pb-4"
+                      className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-5 border border-gray-800 rounded-xl p-4 bg-[#121212] hover:bg-[#181818] transition"
                     >
-                      <img
-                        src={`/${product.productId.image}`}
-                        alt={product.productId.name}
-                        className="w-24 rounded-xl"
-                      />
-                      <div>
-                        <h2 className="font-semibold text-[#F5F5F5]">
-                          {product.productId.name}
-                        </h2>
-                        <p className="text-sm text-gray-400">
-                          Arriving on: {product.deliveryDate}
-                        </p>
-                        <p className="text-sm text-gray-400">
-                          Quantity: {product.quantity}
-                        </p>
+                      <div className="flex items-center gap-5">
+                        <img
+                          src={`/${product.productId.image}`}
+                          alt={product.productId.name}
+                          className="w-24 h-24 object-cover rounded-lg border border-gray-700"
+                        />
+                        <div>
+                          <h2 className="font-semibold text-lg text-[#F5F5F5]">
+                            {product.productId.name}
+                          </h2>
+                          <p className="text-sm text-gray-400">
+                            Arriving on:{" "}
+                            <span className="text-[#F97316] font-medium">
+                              {product.deliveryDate}
+                            </span>
+                          </p>
+                          <p className="text-sm text-gray-400">
+                            Quantity: {product.quantity}
+                          </p>
+                        </div>
+                      </div>
+
+                      <div className="flex flex-wrap gap-3 justify-end">
                         <button
                           onClick={() => handleBuyAgain(product.productId._id)}
-                          className="flex items-center mt-2 bg-[#F97316] hover:bg-[#EA580C] text-black font-semibold px-3 py-1 rounded-lg transition"
+                          className="flex items-center bg-[#F97316] hover:bg-[#EA580C] text-black font-semibold px-4 py-2 rounded-full text-sm transition transform hover:scale-105"
                         >
                           <img
                             src="/images/icons/buy-again.png"
                             alt="Buy Again"
                             className="h-4 mr-2"
                           />
-                          Buy it again
+                          Buy Again
+                        </button>
+
+                        <button
+                          onClick={() => navigate("/tracking")}
+                          className="flex items-center border border-[#F97316] text-[#F97316] hover:bg-[#F97316] hover:text-black font-semibold px-4 py-2 rounded-full text-sm transition transform hover:scale-105"
+                        >
+                          <img
+                            src="/images/icons/truck.png"
+                            alt="Track"
+                            className="h-4 mr-2 invert-[50%] hover:invert-0"
+                          />
+                          Track Package
                         </button>
                       </div>
-
-                      <button
-                        onClick={() => navigate("/tracking")}
-                        className="bg-transparent border border-[#F97316] text-[#F97316] hover:bg-[#F97316] hover:text-black px-3 py-1 rounded-lg font-medium transition"
-                      >
-                        Track package
-                      </button>
                     </div>
                   ))}
                 </div>
