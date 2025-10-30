@@ -136,7 +136,7 @@ You can add screenshots of your project here for a more visual README.
 *(Add a screenshot showing your product list page)*
 
 ```
-![Home Page](/screenshots/home-page-scr-1.png)
+![Home Page](screenshots/home-page-scr-1.png)
 ```
 ```
 ![Home Page](./screenshots/home-page-scr-2.png)
