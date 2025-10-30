@@ -49,7 +49,7 @@ npm install
 Inside the root folder, create a `.env` file and add:
 
 ```bash
-VITE_API_URL=https://your-backend-url.onrender.com
+VITE_API_URL=https://nexora-assign.onrender.com
 ```
 
 > 💡 You can get this backend URL after deploying your Node.js API on Render or any other hosting platform.
