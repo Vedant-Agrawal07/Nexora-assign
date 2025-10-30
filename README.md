@@ -163,11 +163,11 @@ You can add screenshots of your project here for a more visual README.
 
 *(Add a screenshot of past orders)*
 
-```
+
 ![Orders Page](https://github.com/Vedant-Agrawal07/Nexora-assign/blob/86d07570805097570c03dcd664c7258f72a53459/screenshots/tracking-page-scr.png)
 ```
 
----
+
 
 ## 🔐 Environment Variables (Frontend)
 
