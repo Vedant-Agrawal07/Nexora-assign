@@ -119,11 +119,10 @@ backend/
 
 | Endpoint        | Method | Description               |
 | --------------- | ------ | ------------------------- |
-| `/api/cart`     | GET    | Fetch user’s cart         |
-| `/api/cart`     | POST   | Add item to cart          |
-| `/api/cart/:id` | DELETE | Remove item from cart     |
-| `/api/orders`   | POST   | Place an order            |
-| `/api/orders`   | GET    | Fetch all orders for user |
+| `/api/product`  | GET    | Fetch prodcuts            |
+| `/api/user`     | POST   | user route                |
+| `/api/cart`     | DELETE | cart route                |
+| `/api/order`    | POST   | Place an order            |
 
 ---
 
